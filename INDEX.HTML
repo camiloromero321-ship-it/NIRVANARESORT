@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirvana Resort - Investor Deck</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* VARIABLES DE MARCA [Fuente: Manual de Marca Pag 2] */
+        :root {
+            --cobre-oscuro: #4C2E14;
+            --oro-nirvana: #C7A64B;
+            --arena-natural: #C9B79C;
+            --gris-piedra: #8A8176;
+            --verde-oliva: #A69F6F;
+            --blanco-suave: #F9F7F2; /* Derivado para legibilidad */
+            
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Lora', serif;
+            --font-ui: 'Montserrat', sans-serif;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--blanco-suave);
+            color: var(--cobre-oscuro);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* UTILIDADES DE TEXTO */
+        h1, h2, h3 { font-family: var(--font-title); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .gold-text { color: var(--oro-nirvana); }
+        .subtitle { font-family: var(--font-ui); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.9rem; }
+        
+        /* CONTENEDOR DE DIAPOSITIVAS */
+        .deck-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--arena-natural);
+            position: relative;
+        }
+
+        /* --- SLIDE 1: PORTADA --- */
+        #cover {
+            background-color: var(--cobre-oscuro);
+            color: white;
+            text-align: center;
+            background-image: linear-gradient(rgba(76, 46, 20, 0.85), rgba(76, 46, 20, 0.85)), url('https://via.placeholder.com/1920x1080/4C2E14/C7A64B?text=Render+Bungalow+Amanecer');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #cover .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--oro-nirvana);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--oro-nirvana);
+            font-family: var(--font-title);
+            font-size: 2rem;
+        }
+
+        #cover h1 {
+            font-size: 4rem;
+            color: var(--oro-nirvana);
+            margin-bottom: 1rem;
+        }
+
+        #cover p.tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-family: var(--font-body);
+            margin-bottom: 3rem;
+        }
+
+        #cover .footer-note {
+            position: absolute;
+            bottom: 2rem;
+            width: 100%;
+            left: 0;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* --- LAYOUTS COMUNES --- */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .image-box {
+            background-color: var(--gris-piedra);
+            height: 400px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-ui);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- SLIDE 5: METRICAS --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-top: 4px solid var(--oro-nirvana);
+            box-shadow: 0 10px 30px rgba(76, 46, 20, 0.05);
+            text-align: center;
+        }
+
+        .metric-card .number {
+            font-family: var(--font-ui);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cobre-oscuro);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- SLIDE 8: EQUIPO --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--arena-natural);
+            margin-bottom: 1rem;
+            filter: sepia(0.2) grayscale(0.2); /* Estilo fotográfico cálido */
+        }
+
+        .team-member h4 {
+            font-family: var(--font-title);
+            color: var(--cobre-oscuro);
+            font-size: 1rem;
+        }
+
+        .team-member span {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--gris-piedra);
+            text-transform: uppercase;
+        }
+
+        /* --- SLIDE 11: CIERRE --- */
+        #contact {
+            background-color: var(--cobre-oscuro);
+            color: var(--arena-natural);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            background-color: var(--oro-nirvana);
+            color: var(--cobre-oscuro);
+            text-decoration: none;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: var(--cobre-oscuro);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .split-layout { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            #cover h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+
+        <section id="cover" class="slide">
+            <div class="logo-placeholder">N</div> <p class="subtitle">Tokenizing the Andean Paradise</p>
+            <h1>Nirvana Resort</h1>
+            <p class="tagline">"Donde el silencio se convierte en lujo." [cite: 106]</p>
+            <div class="footer-note">
+                Investment Opportunity | Regulation D 506(c) | Eje Cafetero, Colombia
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="split-layout">
+                <div>
+                    <p class="subtitle gold-text">El Mercado</p>
+                    <h2>La Brecha del Lujo</h2>
+                    <br>
+                    <p>El Eje Cafetero es un destino de clase mundial, pero carece de infraestructura "Ultra-Premium" comparable a Bali o Bora Bora.</p>
+                    <br>
+                    <p><strong>El Problema:</strong> Alta demanda de extranjeros con alto poder adquisitivo, poca oferta de privacidad y lujo real.</p>
+                    <br>
+                    <p><strong>La Barrera:</strong> Invertir en Real Estate de alto rendimiento en Colombia es complejo y burocrático para el capital global.</p>
+                </div>
+                <div class="image-box">
+                    <img src="https://via.placeholder.com/600x400/C9B79C/4C2E14?text=Grafico+Demanda+vs+Oferta" alt="Market Gap">
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" style="background-color: var(--blanco-suave);">
+            <div class="split-layout">
+                <div class="image-box" style="order: 2;">
+                    <img src="https://via.placeholder.com/600x400/A69F6F/FFFFFF?text=Render+Interior+Bungalow" alt="Interior Bungalow">
+                </div>
+                <div style="order: 1;">
+                    <p class="subtitle gold-text">El Producto</p>
+                    <h2>Santuario Tokenizado</h2>
+                    <br>
+                    <ul style="list-style: none; font-family: var(--font-body);">
+                        <li style="margin-bottom: 1rem;"><strong>✦ 20 Bungalows de Lujo:</strong> Diseño biofílico suspendido en la montaña.</li>
+                        <li style="margin-bottom: 1rem;"><strong>✦ Estética Orgánica:</strong> Materiales como madera teca, piedra y lino, inspirados en la filosofía budista[cite: 52].</li>
+                        <li style="margin-bottom: 1rem;"><strong>✦ Tecnología Blockchain:</strong> Propiedad fraccionada que permite liquidez inmediata.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p class="subtitle gold-text">Unit Economics</p>
+                <h2>Proyecciones Financieras</h2>
+                <p style="margin-top: 1rem;">Basado en una ocupación conservadora del 65% y un ADR de $400 USD.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="number">$400</span>
+                    <span>ADR (Tarifa Promedio)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">$1.9M</span>
+                    <span>Ingresos Alojamiento</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number">$2.3M</span>
+                    <span>Ingresos Servicios (F&B)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="number" style="color: var(--verde-oliva);">$2.0M</span>
+                    <span>EBITDA Estimado</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" style="background-color: #F4F1EA;">
+            <div class="split-layout">
+                <div>
+                    <p class="subtitle gold-text">La Oferta</p>
+                    <h2>Estructura de Capital</h2>
+                    <p>Recaudación Total: <strong>$2,000,000 USD</strong> bajo Reg D 506(c).</p>
+                    <br>
+                    <div style="font-family: var(--font-ui);">
+                        <div style="margin-bottom: 10px; border-left: 4px solid var(--cobre-oscuro); padding-left: 10px;">
+                            <strong>60% Venta Pública</strong><br><small>Inversores Acreditados</small>
+                        </div>
+                        <div style="margin-bottom: 10px; border-left: 4px solid var(--oro-nirvana); padding-left: 10px;">
+                            <strong>20% Fundadores</strong><br><small>Vesting a 3 años</small>
+                        </div>
+                        <div style="margin-bottom: 10px; border-left: 4px solid var(--arena-natural); padding-left: 10px;">
+                            <strong>12% Reserva Liquidez</strong><br><small>Tesorería</small>
+                        </div>
+                        <div style="margin-bottom: 10px; border-left: 4px solid var(--gris-piedra); padding-left: 10px;">
+                            <strong>8% Asesores & Marketing</strong><br><small>Crecimiento</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-box" style="background: transparent;">
+                     <div style="width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(var(--cobre-oscuro) 0% 60%, var(--oro-nirvana) 60% 80%, var(--arena-natural) 80% 92%, var(--gris-piedra) 92% 100%); margin: 0 auto;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <p class="subtitle gold-text">Leadership</p>
+                <h2>Architects of Nirvana</h2>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Rick Tobon">
+                    <h4>Rick Tobon</h4>
+                    <span>CEO & Founder</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Cesar Varon">
+                    <h4>Cesar Varon</h4>
+                    <span>COO & Founder</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Lina Escarraga">
+                    <h4>Lina Escarraga</h4>
+                    <span>CMO</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Jose Juarez">
+                    <h4>Jose Juarez</h4>
+                    <span>CTO</span>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Camilo Romero">
+                    <h4>Camilo Romero</h4>
+                    <span>CGO</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="slide">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="font-size: 3rem; color: var(--oro-nirvana); margin-bottom: 1rem;">✦</div>
+                <h2>"Un lugar donde el silencio se convierte en lujo."</h2>
+                <p style="margin-top: 2rem; font-family: var(--font-body); font-style: italic;">[cite: 106]</p>
+                
+                <br><br>
+                <p class="subtitle">Únete a la Whitelist</p>
+                <a href="#" class="cta-button">Invertir Ahora</a>
+                
+                <div style="margin-top: 4rem; font-size: 0.9rem; opacity: 0.7;">
+                    <p>Rick Tobon, CEO | rick@nirvanaresort.com</p>
+                    <p>Bogotá, Colombia | Abu Dhabi, UAE</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
